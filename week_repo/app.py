@@ -296,7 +296,10 @@ if not check_password():
 current_user = st.session_state['user_id']
 # 表示名から実際のフォルダ名を解決
 data_folder = USER_FOLDERS.get(current_user, "farm_a")
-DATA_ROOT = f"data/{data_folder}"
+
+# データパスの構築 (絶対パスで指定)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_ROOT = os.path.join(BASE_DIR, "data", data_folder)
 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
