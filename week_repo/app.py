@@ -526,7 +526,7 @@ with tab2:
             layout_updates[y_key] = axis_settings
 
         fig.update_layout(**layout_updates)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
 
 # --- TAB 3: 天気予報 (New) ---
 with tab3:
@@ -548,7 +548,7 @@ with tab3:
         fig_f.update_layout(title="週間予報 (気温 & 湿度)", height=400, template="plotly_white")
         fig_f.update_yaxes(title_text="気温(℃)", secondary_y=False)
         fig_f.update_yaxes(title_text="湿度(%)", range=[0, 100], secondary_y=True)
-        st.plotly_chart(fig_f, use_container_width=True)
+        st.plotly_chart(fig_f, width='stretch')
         
         # 詳細テーブル
         st.write("#### 詳細データ")
@@ -556,7 +556,7 @@ with tab3:
         df_disp = df_forecast[disp_cols].rename(columns={
             'temp_out': '気温(℃)', 'humid_out': '湿度(%)', 'wind_speed': '風速(m/s)'
         })
-        st.dataframe(df_disp, use_container_width=True)
+        st.dataframe(df_disp, width='stretch')
     else:
         st.error("天気予報データを取得できませんでした。")
 
