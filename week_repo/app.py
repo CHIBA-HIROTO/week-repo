@@ -361,7 +361,7 @@ with tab1:
             st.markdown(f"### 【最新生育調査データ: {latest_date.strftime('%Y/%m/%d')}】")
             c1, c2 = st.columns([1, 1.5])
             with c1: st.write("**全体平均**"); st.table(df_latest[calc_cols].mean().to_frame().T.style.format("{:.1f}"))
-            with c2: st.write("**エリア別平均**"); st.dataframe(df_latest.groupby('area')[calc_cols].mean().style.format("{:.1f}"), use_container_width=True)
+            with c2: st.write("**エリア別平均**"); st.dataframe(df_latest.groupby('area')[calc_cols].mean().style.format("{:.1f}"), width='stretch')
             
             st.divider(); st.write("#### 【生育推移】")
             df_trend = df_all_g.groupby('date')[calc_cols].mean().reset_index()
@@ -380,7 +380,7 @@ with tab1:
                 df_trend_disp['date'] = df_trend_disp['date'].dt.strftime('%Y/%m/%d')
                 # フォーマット設定 (数値列のみ)
                 format_dict = {c: "{:.1f}" for c in calc_cols}
-                st.dataframe(df_trend_disp.rename(columns={'date':'日付'}).set_index('日付').style.format(format_dict), use_container_width=True, height=500)
+                st.dataframe(df_trend_disp.rename(columns={'date':'日付'}).set_index('日付').style.format(format_dict), width='stretch', height=500)
 
             with col_t_right:
                 st.write("##### 推移グラフ")
@@ -410,7 +410,7 @@ with tab1:
                         xaxis=dict(title="日付", type='category', tickangle=-45),
                         legend=dict(orientation="h", y=1.1, x=0.5, xanchor="center")
                     )
-                    st.plotly_chart(fig_growth, use_container_width=True)
+                    st.plotly_chart(fig_growth, width='stretch')
                 else:
                     st.warning("項目を選択してください")
     else: st.info("データ待機中: data/growth/ フォルダにCSVを配置してください。")
