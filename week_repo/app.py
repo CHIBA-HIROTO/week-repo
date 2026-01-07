@@ -305,6 +305,28 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
 with st.sidebar:
+    # --- デバッグ用 (問題解決後に削除) ---
+    with st.expander("🛠 デバッグ情報 (管理者用)"):
+        st.write(f"CWD: `{os.getcwd()}`")
+        st.write(f"BASE_DIR: `{BASE_DIR}`")
+        st.write(f"DATA_ROOT: `{DATA_ROOT}`")
+        
+        if st.checkbox("ファイル一覧を表示"):
+            try:
+                st.write("Files in BASE_DIR:", os.listdir(BASE_DIR))
+                data_path = os.path.join(BASE_DIR, "data")
+                if os.path.exists(data_path):
+                    st.write("Files in data/:", os.listdir(data_path))
+                    farm_path = os.path.join(data_path, data_folder)
+                    if os.path.exists(farm_path):
+                        st.write(f"Files in {data_folder}/:", os.listdir(farm_path))
+                        uecs_path = os.path.join(farm_path, "uecs")
+                        if os.path.exists(uecs_path):
+                            st.write(f"Files in uecs/:", os.listdir(uecs_path))
+            except Exception as e:
+                st.error(f"Error checking files: {e}")
+    # -----------------------------------
+
     st.success(f"ログイン中: {current_user}")
     if st.button("ログアウト"):
         st.session_state['authenticated'] = False
