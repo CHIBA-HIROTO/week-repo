@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#2E7D32" # Forest Green for better contrast/readability
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F0F2F6"
+textColor = "#262730"
+font = "sans serif"

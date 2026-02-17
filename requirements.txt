@@ -1,0 +1,8 @@
+streamlit
+pandas
+numpy
+plotly
+requests
+google-generativeai
+bcrypt==4.0.1
+cffi
